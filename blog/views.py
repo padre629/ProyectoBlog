@@ -4,16 +4,18 @@ from models import Usuario, Publicacion, Comentario
 #django login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+#create system users
+from django.contrib.auth.models import User
 
 
 def login_view(request):
   state = "Ingrese sus credenciales para comenzar"
   username = password = ""
-  if request.POST: 
+  if request.POST:
     #get user and pass and validate them
     username = request.POST.get("username")
     password = request.POST.get("password")
-    #authenticate 
+    #authenticate
     user = authenticate(username=username, password=password)
     if user is not None:
       if user.is_active:
@@ -31,13 +33,15 @@ def index_view(request):
   return render_to_response('index.html')
 
 def registro_view(request):
-  if request.POST: 
+  if request.POST:
     #get user and pass and validate them
     name = request.POST.get("name")
     username = request.POST.get("username")
     pass1 = request.POST.get("pass1")
     pass2 = request.POST.get("pass2")
-    #usu = Usuario(nombreUsu=name, usernameUsu=username, passwordUsu=pass1)
+    #system user: (username, email, password)
     usu = User.objects.create_user(name, username, pass1)
+    #restrict new users to login into ADMIN page
+    usu.is_staff = False
     usu.save()
   return render_to_response('registro.html')
