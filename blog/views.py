@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from models import Usuario, Publicacion, Comentario
+from models import Publicacion, Comentario
 # django login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -41,7 +41,7 @@ def index_view(request):
         publi = request.POST.get("publi")
         if request.user.is_authenticated():
             aaa =  request.user
-        usu = Publicacion(idPubli=1, contenidoPubli=publi, numeroLikesPubli=1, fechaPubli='fecha', publicadorPubli=aaa)
+        usu = Publicacion(idPubli=int('1'), contenidoPubli=publi, numeroLikesPubli=1, fechaPubli='fecha', publicadorPubli=aaa)
         usu.save()
         return HttpResponseRedirect("/")
     return render_to_response('index.html', context_instance=RequestContext(request))
