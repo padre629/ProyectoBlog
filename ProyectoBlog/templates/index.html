@@ -6,9 +6,20 @@
     <script src="/media/scripts/bootstrap.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="/media/scripts/bootstrap.min.css">
     <link rel="stylesheet" href="/media/scripts/bootstrap-theme.min.css">
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   </head>
   <body>
     <h1>pagina principal</h1>
+
+
+    <div ng-app="" ng-init="firstName=''">
+
+      <p>QUE ESTAS PENSANDO:<input type="text" ng-model="firstName"><button >Publicar</button></p>
+
+
+      <p>POST: {{ firstName }}</p>
+
+    </div>
     <a href="/logout/">cerrar sesion</a>
   </body>
 </html>
