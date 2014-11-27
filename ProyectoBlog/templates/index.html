@@ -9,17 +9,17 @@
     <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   </head>
   <body>
-    <h1>pagina principal</h1>
+    <div class="container">
+      <div class="col-md-12">
+        <a href="/logout/">cerrar sesion</a>
+        <h1>pagina principal</h1>
 
+        <div ng-app="" ng-init="firstName=''">
+          <p>QUE ESTAS PENSANDO:<input type="text" ng-model="firstName"><button >Publicar</button></p>
 
-    <div ng-app="" ng-init="firstName=''">
-
-      <p>QUE ESTAS PENSANDO:<input type="text" ng-model="firstName"><button >Publicar</button></p>
-
-
-      <p>POST: {{ firstName }}</p>
-
+          <p>POST: {{ firstName }}</p>
+        </div>
+      </div>
     </div>
-    <a href="/logout/">cerrar sesion</a>
   </body>
 </html>

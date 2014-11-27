@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 
 def login_view(request):
   state = "Ingrese sus credenciales para comenzar"
+  login_ok = None
+
   username = password = ""
   if request.POST:
     #get user and pass and validate them
@@ -19,12 +21,14 @@ def login_view(request):
     if user is not None:
       if user.is_active:
         state = "El usuario SI existe y esta activo"
+        login_ok = True
         login(request, user)
         return HttpResponseRedirect("/")
     else:
       state = "Credenciales no validas!"
+      login_ok = False
   #display login form, no post and get requests detected
-  return render_to_response("login.html", {"state": state})
+  return render_to_response("login.html", {"state": state, "login_ok":login_ok})
 
 
 @login_required(login_url = "/login/")
@@ -35,13 +39,14 @@ def registro_view(request):
   if request.POST:
     #get user and pass and validate them
     name = request.POST.get("name")
-    username = request.POST.get("username")
+    username = request.POST.get("email")
     pass1 = request.POST.get("pass1")
     pass2 = request.POST.get("pass2")
-    #system user(nombre, email, contrasena)
+    #system user(username, email, password)
     usu = User.objects.create_user(name, username, pass1)
     usu.is_staff = False
     usu.save()
+    return HttpResponseRedirect("/")
   return render_to_response('registro.html')
 
 def logout_view(request):
