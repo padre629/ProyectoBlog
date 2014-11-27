@@ -30,7 +30,9 @@ def login_view(request):
 
 @login_required(login_url = "/login/")
 def index_view(request):
-  return render_to_response('index.html')
+  if request.user.is_authenticated():
+    nombreUsu = user.username
+  return render_to_response('index.html', {'aa':nombreUsu})
 
 def registro_view(request):
   if request.POST:
@@ -45,3 +47,7 @@ def registro_view(request):
     usu.is_staff = False
     usu.save()
   return render_to_response('registro.html')
+
+def logout_view(request):
+  logout(request)
+  return HttpResponseRedirect("/")
