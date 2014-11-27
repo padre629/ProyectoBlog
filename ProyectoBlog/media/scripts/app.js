@@ -19,22 +19,21 @@ app.value('$app', {"title": "my first machete"});
 //define controllers 
 app.controller('mainController', function($scope, $app){
   $scope.data = [
-    {id: 101, name: "computador", valor: 30000},
+    /*{id: 101, name: "computador", valor: 30000},
     {id: 102, name: "celular", valor: 24500},
     {id: 103, name: "memoria usb", valor: 78000},
-    {id: 104, name: "cuaderno", valor: 125000}
+    {id: 104, name: "cuaderno", valor: 125000}*/
+    {contenidoPubli: "fffff", numeroLikesPubli: '0', fechaPubli: new Date()},
   ];
-  //add "save" button 
-  $scope.save = function(producto) {
+  //add "save" button
+  $scope.save = function(publicacion) {
     var p = {
-      id: producto.id, 
-      name: producto.name, 
-      valor: producto.valor, 
+      contenidoPubli: publicacion.publi,
+      numeroLikesPubli: '0',
+      fechaPubli: new Date(),
     };
     $scope.data.push(p);
-    producto.id = "";
-    producto.name = "";
-    producto.valor = "";
+    publicacion.publi = "";
     $scope.status = "Elemento guardado!";
   };
 });
