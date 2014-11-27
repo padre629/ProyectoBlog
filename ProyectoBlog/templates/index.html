@@ -11,13 +11,23 @@
   <body>
     <div class="container">
       <div class="col-md-12">
+        {% if user.is_authenticated %}
+          <h1> hola {{user.username}} </h1>
+        {% endif %}
+
         <a href="/logout/">cerrar sesion</a>
         <h1>pagina principal</h1>
 
         <div ng-app="" ng-init="firstName=''">
-          <p>QUE ESTAS PENSANDO:<input type="text" ng-model="firstName"><button >Publicar</button></p>
-
-          <p>POST: {{ firstName }}</p>
+          <h3>Qué estás pensando ... </h3>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" name="publi" ng-model="firstName" >
+          </div>
+          <div class="input-group input-group-lg">
+            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+              <button type="button" class="btn btn-default">Publicar!</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

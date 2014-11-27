@@ -4,8 +4,10 @@ from models import Usuario, Publicacion, Comentario
 #django login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-#register
+#only registered users in internal User class can login
 from django.contrib.auth.models import User
+#
+from django.template import RequestContext
 
 def login_view(request):
   state = "Ingrese sus credenciales para comenzar"
@@ -30,10 +32,9 @@ def login_view(request):
   #display login form, no post and get requests detected
   return render_to_response("login.html", {"state": state, "login_ok":login_ok})
 
-
 @login_required(login_url = "/login/")
 def index_view(request):
-  return render_to_response('index.html')
+  return render_to_response('index.html', context_instance=RequestContext(request))
 
 def registro_view(request):
   if request.POST:
