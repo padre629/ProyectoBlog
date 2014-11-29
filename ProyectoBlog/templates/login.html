@@ -8,33 +8,21 @@
     <link rel="stylesheet" href="/media/scripts/bootstrap-theme.min.css">
   </head>
   <body>
-    <div class="container">
-      <div class="col-md-12">
-        <h1>Iniciar sesion</h1>
-        <a href="/registro/">Registrarse</a>
-        {% if login_ok == None %}
-          <div class="alert alert-info" role="alert">
-            <b>BIENVENIDO !!</b> {{state}}
-          </div>
-        {% elif login_ok == False %}
-          <div class="alert alert-danger" role="alert">
-            <b>ERROR</b> {{state}}
-          </div>
-        {% endif %}
-        <form action="/login/" method="post">
-          <div class="input-group">
-            <input type="text" required="true" name="username"
-              class="form-control" placeholder="Nombre de usuario" />
-          </div>
-          <div class="input-group">
-            <input type="password" required="true" name="password"
-              class="form-control" placeholder="Contraseña" />
-          </div>
-          <div class="btn-group">
-            <input type="submit" class="btn btn-default" value="Envia datos" />
-          </div>
-        </form>
-      </div>
+    <h1>Iniciar sesion</h1>
+    <a href="/registro/">Registrarse</a>
+    <div class="alert alert-info" role="alert">
+      <b>Bienvenido/a !!</b> {{state}}
     </div>
+    <form action="/login/" method="post">
+      <div class="input-group">
+        <input type="text" required="true" name="username" class="form-control" placeholder="Nombre de usuario" />
+      </div>
+      <div class="input-group">
+        <input type="password" required="true" name="password" class="form-control" placeholder="Contraseña" />
+      </div>
+      <div class="btn-group">
+        <input type="submit" class="btn btn-default" value="Envia datos" />
+      </div>
+    </form>
   </body>
 </html>
