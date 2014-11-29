@@ -23,20 +23,22 @@ app.controller('mainController', function($scope, $app){
     {id: 102, name: "celular", valor: 24500},
     {id: 103, name: "memoria usb", valor: 78000},
     {id: 104, name: "cuaderno", valor: 125000}*/
-    {contenidoPubli: "fffff", numeroLikesPubli: '0', fechaPubli: new Date()},
+    {contenidoPubli: "fffff", numeroLikesPubli: '0',
+        fechaPubli: new Date().toLocaleString()},
   ];
   //add "save" button
   $scope.save = function(publicacion) {
     var p = {
       contenidoPubli: publicacion.publi,
       numeroLikesPubli: '0',
-      fechaPubli: new Date(),
+      fechaPubli: new Date().toLocaleString(),
     };
     $scope.data.push(p);
     publicacion.publi = "";
     $scope.status = "Elemento guardado!";
   };
 });
+
 app.controller('productsController', function($scope, $app){
   //
 });

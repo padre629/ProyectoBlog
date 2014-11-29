@@ -24,7 +24,7 @@
         <div>
             <h3>Qué estás pensando ... </h3>
 
-            <form action="/" method="post">
+            <form>
                 <div class="input-group input-group-lg">
                     <input type="text" class="form-control" name="publi" ng-model="publicacion.publi">
                 </div>
@@ -34,23 +34,14 @@
                     </div>
                 </div>
             </form>
+        </div>
 
-            <table>
-                <thead>
-                <tr>
-                    <td style="font-weight: bold;">publicacion</td>
-                    <td style="font-weight: bold;">likes</td>
-                    <td style="font-weight: bold;">fecha</td>
-                </tr>
-                </thead>
-                <tbody> <!-- foreach -->
-                <tr ng-repeat="item in data">
-                    <td>{$item.contenidoPubli$}</td>
-                    <td>{$item.numeroLikesPubli}</td>
-                    <td>{$item.fechaPubli}</td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="col-md-12">
+            <div ng-repeat="item in data">
+                <h2> {$item.contenidoPubli$} </h2>
+                <h6>Likes: {$item.numeroLikesPubli$}</h6>
+                <h6>Publicado: {$item.fechaPubli$}</h6>
+            </div>
         </div>
     </div>
 </div>
