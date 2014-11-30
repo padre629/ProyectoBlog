@@ -1,0 +1,28 @@
+<html lang="es" ng-app="djangoAppAngular">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+
+<!--añadimos aquí el controlador appController ya que será donde mostremos los datos-->
+<div class="row" ng-controller="mainController">
+    <h1 class="subheader">Consumir un json con $http en AngularJS</h1>
+    <ul class="panel callout radius">
+        <li ng-repeat="data in datos">
+            <p>Id: {$ data.fields.contenidoPubli $} Nombre: {$ data.fields.numeroLikesPubli $} Profesión: {$ data.fields.publicadorPubli_id $}</p>
+        </li>
+    </ul>
+
+    <h1 class="subheader">Consumir un json con resource en AngularJS</h1>
+    <ul class="panel callout radius">
+        <li ng-repeat="data in datosResource">
+            <p>Id: {{ data.fechaPubli }} Nombre: {{ data.fechaPubli }} Profesión: {{ data.fechaPubli }}</p>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="/media/scripts/angular.js"></script>
+<script type="text/javascript" src="/media/scripts/angular_resource.js"></script>
+<script type="text/javascript" src="/media/scripts/app.js"></script>
+</body>
+</html>

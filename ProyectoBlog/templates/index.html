@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/media/scripts/bootstrap.min.css">
     <link rel="stylesheet" href="/media/scripts/bootstrap-theme.min.css">
     <!-- angular.js -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-    <script src="/media/scripts/app.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/media/scripts/angular.js"></script>
+    <script type="text/javascript" src="/media/scripts/angular_resource.js"></script>
+    <script type="text/javascript" src="/media/scripts/app.js"></script>
 </head>
 <body ng-controller="mainController">
 <div class="container">
@@ -24,12 +25,13 @@
         <div>
             <h3>Qué estás pensando ... </h3>
 
-            <form>
+            <form action="/" method="post">
                 <div class="input-group input-group-lg">
                     <input type="text" class="form-control" name="publi" ng-model="publicacion.publi">
                 </div>
                 <div class="input-group input-group-lg">
                     <div class="btn-group btn-group-lg" role="group" aria-label="...">
+
                         <input type="submit" ng-click="save(publicacion)" class="btn btn-default" value="publicar!"/>
                     </div>
                 </div>
@@ -37,11 +39,16 @@
         </div>
 
         <div class="col-md-12">
-            <div ng-repeat="item in data">
-                <h2> {$item.contenidoPubli$} </h2>
-                <h6>Likes: {$item.numeroLikesPubli$}</h6>
-                <h6>Publicado: {$item.fechaPubli$}</h6>
+            <div ng-repeat="data in datos">
+                <h2> {$data.fields.contenidoPubli$} </h2>
+                <h6>Likes: {$data.fields.numeroLikesPubli$}</h6>
+                <h6>Publicado: {$data.fields.fechaPubli$}</h6>
             </div>
+            <!-- {% for item in listpost %}
+                <h2> {{item.contenidoPubli}} </h2>
+                <h6>Likes: {{item.numeroLikesPubli}}</h6>
+                <h6>Publicado: {{item.fechaPubli}}</h6>
+            {% endfor %} -->
         </div>
     </div>
 </div>

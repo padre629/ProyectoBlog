@@ -33,9 +33,14 @@ def login_view(request):
     # display login form, no post and get requests detected
     return render_to_response("login.html", {"state": state, "login_ok": login_ok})
 
+#serializar una lista de objeto
+from django.core import serializers
+import json
 @login_required(login_url="/login/")
 def index_view(request):
-    if request.is_ajax():
+    listpost=Publicacion.objects.all()
+
+    if request.POST:
         # get user and pass and validate them
         publi = request.POST.get("publi")
         if request.user.is_authenticated():
@@ -44,7 +49,16 @@ def index_view(request):
                           fechaPubli='aa', publicadorPubli=actualuser)
         usu.save()
         return HttpResponseRedirect("/")
-    return render_to_response('index.html', context_instance=RequestContext(request))
+
+    return render_to_response('index.html', {'listpost':listpost}, context_instance=RequestContext(request))
+
+
+
+
+
+
+
+
 
 
 def registro_view(request):
@@ -61,7 +75,29 @@ def registro_view(request):
         return HttpResponseRedirect("/")
     return render_to_response('registro.html')
 
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+
+
+def getdata_view(request):
+    return render_to_response('aaa.html')
+
+#serializar una lista de objeto
+from django.core import serializers
+import json
+def verjson_view(request):
+    try:
+        if request.method=='GET' or request.is_ajax():
+            #atender peticiones GET o AJAX
+            lista_posts = Publicacion.objects.all()
+            return HttpResponse(serializers.serialize('json', lista_posts), content_type = 'application/json')
+        else:
+            return HttpResponse(json.dumps({"error": 'Peticion no valida'}))
+    except Exception, e:
+        #retornar en formato json ese diccionario si se presenta un error
+        return HttpResponse(json.dumps({"error": str(e)}))
+
+
+

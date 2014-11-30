@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 #import views
 from blog.views import index_view, login_view, registro_view
-from blog.views import logout_view
+from blog.views import logout_view, getdata_view, verjson_view
 from django.contrib import admin
 admin.autodiscover()
 
@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     url(r'^login/$', login_view),
     url(r'^registro/$', registro_view),
     url(r'^logout/$', logout_view),
+
+    url(r'^aaa/$', getdata_view),
+    url(r'^json/$', verjson_view),
 )
 
 #allow processing of all files in /media
